@@ -16,34 +16,27 @@ public class BringBackDisarmedTripwire implements ModInitializer {
 
     public static final String MOD_ID = "bring-back-disarmed-tripwire";
 
-    // This logger is used to write text to the console and the log file.
-    // It is considered best practice to use your mod id as the logger's name.
-    // That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
     public void onInitialize() {
-        // Register event to restore pre-1.21.1 behavior: shearing tripwire disarms instead of breaking
         PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
             if (!(state.getBlock() instanceof TripwireBlock)) {
-                return true; // not a tripwire, allow normal breaking
+                return true;
             }
 
             ItemStack mainHand = player.getMainHandStack();
             if (!(mainHand.getItem() instanceof ShearsItem)) {
-                return true; // not using shears, allow normal breaking
+                return true;
             }
 
-            // Replace first break with disarm
             if (state.contains(TripwireBlock.DISARMED) && !state.get(TripwireBlock.DISARMED)) {
                 BlockState disarmed = state.with(TripwireBlock.DISARMED, true);
                 world.setBlockState(pos, disarmed, Block.NOTIFY_ALL);
-                // Damage shears by 1 durability to mirror vanilla interaction cost
                 mainHand.damage(1, player, EquipmentSlot.MAINHAND);
-                return false; // cancel the original break action (we disarmed instead)
+                return false;
             }
 
-            // Already disarmed; allow normal breaking
             return true;
         });
 
