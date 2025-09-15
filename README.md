@@ -33,4 +33,4 @@ The remapped JAR will be in `build/libs/`.
 
 ## License
 
-- CC0-1.0
+- MIT
