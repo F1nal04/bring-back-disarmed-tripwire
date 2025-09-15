@@ -19,12 +19,9 @@ repositories {
 }
 
 loom {
-	splitEnvironmentSourceSets()
-
 	mods {
 		"bring-back-disarmed-tripwire" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
 		}
 	}
 
