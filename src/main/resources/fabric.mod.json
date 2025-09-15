@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "bring-back-disarmed-tripwire",
+	"version": "${version}",
+	"name": "bring back disarmed tripwire",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/bring-back-disarmed-tripwire/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"f1nal.bringbackdisarmedtripwire.BringBackDisarmedTripwire"
+		],
+		"client": [
+			"f1nal.bringbackdisarmedtripwire.BringBackDisarmedTripwireClient"
+		]
+	},
+	"mixins": [
+		"bring-back-disarmed-tripwire.mixins.json",
+		{
+			"config": "bring-back-disarmed-tripwire.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
